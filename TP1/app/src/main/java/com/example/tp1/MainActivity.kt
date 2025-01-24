@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.myapplication.MainActivity2
 
 const val EXTRA_TEXT = "text_to_display"
 
@@ -40,11 +39,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        //creer un bouton next
-        val next = Button(this)
-        next.text = "Next"
-        layoutPrincipal.addView(next)
-
+        val next = findViewById<Button>(R.id.next)
         next.setOnClickListener {
             val intent = Intent(this@MainActivity, MainActivity2::class.java)
             intent.putExtra(EXTRA_TEXT, textView.text.toString())
