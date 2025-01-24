@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="hello">Coucou j\'ai trouvé comment faire</string>
+    <string name="display_label">Vue 2</string>
+    <string name="helloView2">Bienvenue sur la 2eme vue</string>
+    <string name="title_activity_main2">MainActivity2</string>
 </resources>
