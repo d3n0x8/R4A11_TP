@@ -21,9 +21,10 @@ class MainActivity2 : AppCompatActivity() {
         val intent = intent
         if (intent != null) {
             val textAffiche = findViewById<TextView>(R.id.textView3)
-            val text = intent.getStringExtra(EXTRA_TEXT)
+            val name = intent.getStringExtra(EXTRA_TEXT)?.uppercase()
             val birthday = intent.getStringExtra("age")
-            textAffiche.text = text + " vous avez " + birthday + " ans"
+            val text = getString(R.string.hello_name, name, birthday)
+            textAffiche.text = text
         }
     }
 }

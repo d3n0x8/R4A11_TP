@@ -40,10 +40,10 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Veuillez saisir du texte", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener;
             }
-            val birthday = findViewById<EditText>(R.id.birthdayEditText).text.toString().toInt()
             val intent = Intent(this, MainActivity2::class.java)
-            val age = AgeCalculator().calculateAge(birthday)
             intent.putExtra(EXTRA_TEXT, textView2.text.toString())
+            val birthday = findViewById<EditText>(R.id.birthdayEditText).text.toString().toInt()
+            val age = AgeCalculator().calculateAge(birthday)
             intent.putExtra("age", age.toString())
             startActivity(intent)
         }
