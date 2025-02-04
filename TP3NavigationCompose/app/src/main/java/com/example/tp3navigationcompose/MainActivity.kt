@@ -28,6 +28,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.tp3navigationcompose.ui.theme.TP3NavigationComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -71,8 +72,12 @@ fun AppNavigation() {
         composable("form") {
             FormScreen(navController = navController)
         }
-        composable("display") {
-            DisplayScreen(navController = navController)
+        composable(
+            route = "display/{name}",
+            arguments = listOf(navArgument("name") { defaultValue = "" })
+        ) { backStackEntry ->
+            val name = backStackEntry.arguments?.getString("name") ?: ""
+            DisplayScreen(navController = navController, name)
         }
     }
 }
@@ -97,7 +102,7 @@ fun FormScreen(navController: NavHostController) {
                 .fillMaxWidth()
                 .padding(16.dp)
         )
-        Button(onClick = { navController.navigate("display") }) {
+        Button(onClick = { navController.navigate("display/$name") }) {
             Text(text = "Valider")
         }
         Button(onClick = { navController.popBackStack() }) { Text(text = "Retour") }
@@ -124,9 +129,8 @@ fun HomeScreen(navController: NavHostController) {
     }
 }
 
-
 @Composable
-fun DisplayScreen(navController: NavHostController) {
+fun DisplayScreen(navController: NavHostController, name: String) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -135,8 +139,15 @@ fun DisplayScreen(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Bonjour",
+            text = "Affichage du formulaire",
+        )
+        Text(
+            text = name,
             style = MaterialTheme.typography.titleMedium
         )
+        Spacer(modifier = Modifier.height(24.dp))
+        Button(onClick = { navController.popBackStack() }) {
+            Text(text = "Retour")
+        }
     }
 }
